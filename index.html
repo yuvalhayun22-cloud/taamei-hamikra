@@ -30,6 +30,10 @@ body{margin:0;background:transparent;transition:color .25s;color:var(--fg);font-
 html:has(body.onentry),body.onentry{overflow:hidden;height:100%}
 body.onentry .wheel{transform:translateX(calc(var(--u)*429.8))}
 body.onentry .wheel a{pointer-events:none}
+.nav,.wheel line{transition:opacity 1.2s ease}
+body.onentry .nav{opacity:0;pointer-events:none}
+body.onentry .wheel line{opacity:0}
+body.onentry.nomove .nav,body.onentry.nomove .wheel line{transition:none}
 .wheel{transition:transform 1.2s cubic-bezier(.65,0,.35,1)}
 body.onentry.nomove .wheel{transition:none}
 body.fromentry #v-system{animation:fi 1.4s ease}
