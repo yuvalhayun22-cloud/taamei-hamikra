@@ -27,20 +27,15 @@ body{margin:0;background:transparent;transition:color .25s;color:var(--fg);font-
 
 /* ---------- views ---------- */
 .view[hidden]{display:none}
-#v-entry{position:fixed;inset:0;z-index:1;background:var(--bg)}
-#v-entry a{display:block;width:100%;height:100%;cursor:pointer}
-#v-entry svg{display:block;width:100%;height:100%}
-#v-entry{transition:opacity .9s ease}
-#v-entry.leaving{opacity:0;pointer-events:none}
-#v-entry path{fill:#e4decc;transition:fill 3.2s ease-in-out}
-#v-entry path.k{fill:#000;transition:fill 2.6s ease-in-out}
-@keyframes fi{from{opacity:0}to{opacity:1}}
-body.fromentry .wheel,body.fromentry #v-system{animation:fi .9s ease}
-#v-entry .mv{animation:mv 45s linear infinite}
-@keyframes mv{to{transform:translateY(-960.4px)}}
-@media (prefers-reduced-motion:reduce){#v-entry .mv{animation:none}}
 html:has(body.onentry),body.onentry{overflow:hidden;height:100%}
-body.onentry .wheel,body.onentry .strip{display:none}
+body.onentry .wheel{transform:translateX(calc(var(--u)*429.8))}
+body.onentry .wheel a{pointer-events:none}
+.wheel{transition:transform 1.2s cubic-bezier(.65,0,.35,1)}
+body.onentry.nomove .wheel{transition:none}
+body.fromentry #v-system{animation:fi 1.4s ease}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@media (max-width:900px){body.onentry .wheel{transform:none}}
+
 #v-system{width:calc(var(--u)*827);margin:0 calc(var(--u)*30) 0 auto;padding:calc(var(--u)*15) 0 calc(var(--u)*15);
   line-height:calc(var(--u)*45)}
 #v-system p{margin:0;text-indent:calc(var(--u)*70)}
@@ -171,7 +166,6 @@ body.has-img .strip{background:transparent}
   <p>בין צורה לפעולה: הפער השמי של המסורות אף על פי שהסימנים הגרפיים עצמם נותרו אחידים בכל קהילות ישראל, בחינת שמותיהם חושפת פער תפיסתי עמוק בין המסורות. ב<b>מסורת אשכנז</b>, השמות שניתנו לסימנים התבססו על מורפולוגיה ותיאור חזותי, תוך התייחסות לטעם כ<span class="u" data-k="object" tabindex="0">אובייקט גרפי סטטי</span><span class="ins" aria-hidden="true"></span>. לעומת זאת, ב<b>מסורת עדות המזרח</b>, הוענקו לאותם סימנים ממש שמות המבוססים על <span class="u" data-k="action" tabindex="0">פעולה והוראת שמע</span><span class="ins" aria-hidden="true"></span>. שוני זה מדגים כיצד אותו סימן טיפוגרפי מתפקד במסורת אחת כתיאור צורה פיזית, ובמסורת השנייה כפקודת הפעלה ומאמץ קולי.</p>
   <p>טעמי המקרא הם עדיין מערכת חיה ופעילה. <b>הם משמשים מדי שבוע בבתי כנסת ברחבי העולם ככלי ההנחיה המרכזי לקריאה הפומבית בתורה. </b>מעבר לתפקידם הדתי, הם מהווים כלי מחקר מרכזי עבור בלשנים וחוקרי מקרא להבנת התחביר של העברית הקדומה. למרות שהעברית המודרנית זנחה אותם לטובת סימני הפיסוק המערביים, טעמי המקרא עומדים עד היום כאחת ממערכות ה-UI (ממשק משתמש) הקדומות, החכמות והמורכבות ביותר שנוצרו אי פעם לקריאת טקסט.</p>
 </article>
-<section class="view" id="v-entry" hidden aria-label="כניסה"><a href="#system" aria-label="כניסה למערכת"><svg viewBox="0 0 1494 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g class="mv"><g id="pg" fill="#e4decc" transform="translate(32 0)"><path d="M321.1 1050.4C280.4 1038.2 254 1012.8 254 973.1C254 935.5 279.4 908.1 317 908.1C349.6 908.1 369.9 933.5 396.4 971.1C422.8 1008.7 443.1 1032.1 470.6 1032.1C498 1032.1 517.4 1010.8 517.4 981.3C517.4 950.8 495 929.4 462.5 911.1L465.5 905C506.2 919.2 532.6 944.7 532.6 981.3C532.6 1019.9 506.2 1047.4 467.5 1047.4C435 1047.4 412.6 1019.9 385.2 981.3C358.7 945.7 341.5 923.3 314 923.3C287.6 923.3 269.3 944.7 269.3 973.1C269.3 1007.7 291.6 1028 324.2 1043.3L321.1 1050.4Z"/><path d="M841.4 661.7C837.3 661.7 833.2 661.6 828.1 660.6L783.4 740L768.2 740L801.7 652.5C776.3 639.3 759 612.8 759 582.3C759 537.6 795.6 502 841.4 502C887.1 502 923.7 537.6 923.7 582.3C923.7 627.1 887.1 661.7 841.4 661.7ZM841.4 645.4C877 645.4 904.4 617.9 904.4 582.3C904.4 546.7 877 518.3 841.4 518.3C805.8 518.3 778.3 546.7 778.3 582.3C778.3 617.9 805.8 645.4 841.4 645.4Z"/><path d="M919 471.5L919 258L939.3 258L939.3 303.8C939.3 353.6 964.8 374.9 995.3 374.9C1030.9 374.9 1052.2 349.5 1052.2 302.7L1052.2 258L1072.5 258L1072.5 302.7C1072.5 357.7 1040 390.2 995.3 390.2C975.9 390.2 949.5 379 938.3 354.6L928.2 471.5L919 471.5Z"/><path d="M1337.3 193.6C1333.3 193.6 1329.2 193.6 1324.1 192.6L1279.4 271.9L1264.1 271.9L1297.7 184.5C1272.3 171.3 1255 144.8 1255 114.3C1255 69.6 1291.6 34 1337.3 34C1383.1 34 1419.7 69.6 1419.7 114.3C1419.7 159.1 1383.1 193.6 1337.3 193.6ZM1337.3 177.4C1372.9 177.4 1400.4 149.9 1400.4 114.3C1400.4 78.7 1372.9 50.3 1337.3 50.3C1301.8 50.3 1274.3 78.7 1274.3 114.3C1274.3 149.9 1301.8 177.4 1337.3 177.4ZM1097.4 194.7C1051.6 194.7 1015 160.1 1015 115.3C1015 70.6 1051.6 35 1097.4 35C1143.1 35 1179.7 70.6 1179.7 115.3C1179.7 145.9 1162.5 172.3 1137 185.5L1170.6 273L1155.3 273L1110.6 193.6C1105.5 194.7 1101.4 194.7 1097.4 194.7ZM1097.4 178.4C1133 178.4 1160.4 150.9 1160.4 115.3C1160.4 79.8 1133 51.3 1097.4 51.3C1061.8 51.3 1034.3 79.8 1034.3 115.3C1034.3 150.9 1061.8 178.4 1097.4 178.4Z"/><path d="M991.1 759.7L991.1 746.5L1104 691.6L991.1 633.6L991.1 625.5L1101 564.5L991.1 504.5L991.1 496.3L1131.5 434.3L1131.5 447.5L1020.6 500.4L1131.5 558.4L1131.5 566.5L1021.6 629.5L1131.5 688.5L1131.5 696.7L991.1 759.7Z"/><path d="M1410.2 690.4C1397 690.4 1385.8 679.2 1385.8 665C1385.8 651.8 1397 639.6 1410.2 639.6C1424.4 639.6 1436.6 651.8 1436.6 665C1436.6 679.2 1424.4 690.4 1410.2 690.4ZM1294.2 690.4C1280 690.4 1268.8 679.2 1268.8 665C1268.8 651.8 1280 639.6 1294.2 639.6C1307.5 639.6 1319.7 651.8 1319.7 665C1319.7 679.2 1307.5 690.4 1294.2 690.4ZM1352.2 588.7C1337 588.7 1326.8 577.5 1326.8 562.3C1326.8 548.1 1337 536.9 1352.2 536.9C1367.5 536.9 1377.6 548.1 1377.6 562.3C1377.6 577.5 1367.5 588.7 1352.2 588.7Z"/><path d="M172.9 978L0 890.6L0 882.5L172.9 795L172.9 810.3L39.7 886.5L172.9 962.8L172.9 978Z"/><path d="M207.8 437.5C207.8 341.9 176.3 302.3 116.3 302.3L98 302.3L98 287L116.3 287C190.5 287 228.2 331.7 228.2 437.5L228.2 490.4L207.8 490.4L207.8 437.5Z"/><path d="M327 328.9L327 156L347.3 156L347.3 328.9L327 328.9ZM432.8 322.8C418.5 322.8 407.3 311.6 407.3 297.3C407.3 284.1 418.5 271.9 432.8 271.9C446 271.9 458.2 284.1 458.2 297.3C458.2 311.6 446 322.8 432.8 322.8ZM432.8 210.9C417.5 210.9 407.3 199.7 407.3 184.5C407.3 170.2 417.5 159.1 432.8 159.1C448 159.1 458.2 170.2 458.2 184.5C458.2 199.7 448 210.9 432.8 210.9Z"/><path d="M206.6 862.1L198.5 862.1L198.5 846.8L206.6 846.8C268.6 846.8 318.4 821.4 318.4 711.6L318.4 618L338.8 618L338.8 711.6C338.8 821.4 297.1 862.1 206.6 862.1Z"/><path d="M843.2 1027C755.7 1027 711 980.3 711 876.6L711 783L731.3 783L731.3 876.6C731.3 982.3 786.2 1011.8 843.2 1011.8L851.3 1011.8L851.3 1027L843.2 1027Z"/><path d="M832 925.1C832 866.1 860.5 829.5 904.2 823.4L911.3 740L926.6 740L932.7 823.4C977.4 829.5 1004.9 866.1 1004.9 925.1L1004.9 946.4L989.6 946.4L989.6 925.1C989.6 871.2 960.1 842.7 918.4 842.7C877.8 842.7 847.3 871.2 847.3 925.1L847.3 946.4L832 946.4L832 925.1Z"/><path d="M413.4 558.7C367.6 558.7 331 524.1 331 479.3C331 434.6 367.6 399 413.4 399C459.1 399 495.7 434.6 495.7 479.3C495.7 509.8 478.4 536.3 453 549.5L486.6 637L471.3 637L426.6 557.6C421.5 558.6 417.4 558.7 413.4 558.7ZM413.4 542.4C449 542.4 476.4 514.9 476.4 479.3C476.4 443.7 449 415.3 413.4 415.3C377.8 415.3 350.3 443.7 350.3 479.3C350.3 514.9 377.8 542.4 413.4 542.4Z"/><path d="M669.8 620.5C669.8 524.9 638.3 485.3 578.3 485.3L560 485.3L560 470L578.3 470C652.5 470 690.2 514.7 690.2 620.5L690.2 673.4L669.8 673.4L669.8 620.5Z"/><path d="M1187.7 769.9L1187.7 576.7L1208 576.7L1208 769.9L1187.7 769.9Z"/><path d="M1307 910.5C1307 804.7 1344.6 760 1418.9 760L1437.2 760L1437.2 775.3L1418.9 775.3C1358.9 775.3 1327.3 814.9 1327.3 910.5L1327.3 963.4L1307 963.4L1307 910.5Z"/><path d="M17 674.3C17 586.8 49.5 537 123.8 537L137 537L137 549.2L123.8 549.2C69.9 549.2 37.3 579.7 37.3 674.3L37.3 741.4L17 741.4L17 674.3ZM139 677.3C139 580.7 181.7 537 262.1 537L269.2 537L269.2 551.2L262.1 551.2C203.1 551.2 159.4 579.7 159.4 677.3L159.4 740.4L139 740.4L139 677.3Z"/><path d="M426 870.6L426 855.4L559.2 796.4L426 739.5L426 731.3L598.9 651L598.9 666.3L465.7 734.4L598.9 792.3L598.9 800.5L426 870.6Z"/><path d="M1208.3 518.2L1188 518.2L1188 503L1208.3 503C1274.4 503 1326.3 467.4 1326.3 363.7L1326.3 308.8L1346.6 308.8L1346.6 363.7C1346.6 468.4 1295.8 518.2 1208.3 518.2ZM1213.4 398.3C1202.2 398.3 1193.1 389.1 1193.1 377.9C1193.1 366.7 1202.2 357.6 1213.4 357.6C1224.6 357.6 1233.8 366.7 1233.8 377.9C1233.8 389.1 1224.6 398.3 1213.4 398.3Z"/><path d="M1171.5 936.5C1118.7 936.5 1085.1 899.8 1085.1 838.8L1085.1 806.3L1100.4 806.3L1100.4 838.8C1100.4 887.6 1127.8 916.1 1171.5 916.1C1217.3 916.1 1242.7 887.6 1242.7 838.8L1242.7 806.3L1258 806.3L1258 838.8C1258 899.8 1225.5 936.5 1171.5 936.5Z"/><path d="M143.4 213.2C90.6 213.2 57 176.5 57 115.5L57 83L72.3 83L72.3 115.5C72.3 164.3 99.7 192.8 143.4 192.8C189.2 192.8 214.6 164.3 214.6 115.5L214.6 83L229.9 83L229.9 115.5C229.9 176.5 197.3 213.2 143.4 213.2Z"/><path d="M625 398.1L625 382.9L629.1 382.9C687 382.9 733.8 353.4 733.8 250.7L733.8 148L754.1 148L754.1 250.7C754.1 349.3 707.4 398.1 629.1 398.1L625 398.1ZM736.9 398.1L736.9 383.9L741.9 383.9C801.9 383.9 841.6 353.4 841.6 250.7L841.6 148L861.9 148L861.9 250.7C861.9 349.3 823.3 398.1 738.9 398.1L736.9 398.1Z"/><path d="M526 244L526 223.7L663.3 223.7L663.3 -0L683.6 -0L683.6 244L526 244Z"/><path d="M604.4 1034.7C590.2 1034.7 579 1023.5 579 1009.3C579 996.1 590.2 983.9 604.4 983.9C617.6 983.9 629.8 996.1 629.8 1009.3C629.8 1023.5 617.6 1034.7 604.4 1034.7ZM604.4 922.9C589.2 922.9 579 911.7 579 896.4C579 882.2 589.2 871 604.4 871C619.7 871 629.8 882.2 629.8 896.4C629.8 911.7 619.7 922.9 604.4 922.9Z"/><path d="M558.5 365.4C552.6 348.1 544.6 337.5 526 332.9L526 330.2C544.6 324.9 553.2 314.9 558.5 297L560.5 297C565.9 314.9 575.2 324.9 593.1 329.5L593.1 332.2C575.2 337.5 565.9 346.8 560.5 365.4L558.5 365.4Z"/><path d="M943.5 129.4C937.6 112.1 929.6 101.5 911 96.9L911 94.2C929.6 88.9 938.2 78.9 943.5 61L945.5 61C950.9 78.9 960.2 88.9 978.1 93.5L978.1 96.2C960.2 101.5 950.9 110.8 945.5 129.4L943.5 129.4Z"/><path d="M23.7 447.7C10.4 447.7 0 436.4 0 422C0 408.6 10.4 396.2 23.7 396.2C36 396.2 47.3 408.6 47.3 422C47.3 436.4 36 447.7 23.7 447.7ZM23.7 334.5C9.5 334.5 0 323.2 0 307.7C0 293.3 9.5 282 23.7 282C37.9 282 47.3 293.3 47.3 307.7C47.3 323.2 37.9 334.5 23.7 334.5Z"/></g><g id="pg2" fill="#e4decc" transform="translate(32 960.4)"></g></g></svg></a></section>
 <section class="view" id="v-taamim" hidden aria-label="פירוט הטעמים"></section>
 <section class="view" id="v-verse" hidden>
   <h1 class="vt" id="vt"></h1>
@@ -272,7 +266,7 @@ const items = TAAMIM.map(([name, x, y, w, h, d]) => {
 });
 
 // ---- page 2 content + hover cursors ----
-const vEntry = document.getElementById("v-entry"), vSystem = document.getElementById("v-system"), vTaamim = document.getElementById("v-taamim"), vVerse = document.getElementById("v-verse");
+const vSystem = document.getElementById("v-system"), vTaamim = document.getElementById("v-taamim"), vVerse = document.getElementById("v-verse");
 const verseEl = document.getElementById("verse"), vtEl = document.getElementById("vt");
 const entryEls = [];
 for (const [title, l1, l2] of ENTRIES) {
@@ -337,7 +331,7 @@ function tick() {
   render(cur);
   raf = Math.abs(goal - cur) > 0.02 ? requestAnimationFrame(tick) : 0;
 }
-function update() { goal = targetAngle(); if (!raf) raf = requestAnimationFrame(tick); }
+function update() { if (route === "entry") return; goal = targetAngle(); if (!raf) raf = requestAnimationFrame(tick); }
 
 // ---- scale + routing ----
 function setUnit() {
@@ -401,10 +395,9 @@ playBtn.addEventListener("click", () => {
 });
 function applyRoute(reset) {
   stopAudio();
+  cancelIntro();
   const h = location.hash.slice(1);
   route = h === "system" ? "system" : h === "taamim" ? "taamim" : SUBS[h] ? "verse" : "entry";
-  vEntry.hidden = route !== "entry";
-  if (route === "entry") { vEntry.classList.remove("leaving"); }
   document.body.classList.toggle("onentry", route === "entry");
   vSystem.hidden = route !== "system";
   vTaamim.hidden = route !== "taamim";
@@ -426,6 +419,7 @@ function applyRoute(reset) {
   document.title = route === "entry" ? "טעמי המקרא" : route === "system" ? "טעמי המקרא" : route === "taamim" ? "על הטעמים — טעמי המקרא" : ENTRIES[SUBS[h].i][0].trim() + " — טעמי המקרא";
   if (reset) scrollTo(0, 0);
   measure(); update();
+  if (route === "entry") startIntro();
 }
 addEventListener("hashchange", () => applyRoute(true));
 addEventListener("scroll", update, { passive: true });
@@ -487,34 +481,32 @@ nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { nav.c
 
 setUnit();
 
-// ---- entry page: second copy for the endless loop, random marks turning black, fade on click
-const entryLink = vEntry.querySelector("a"), pg = document.getElementById("pg"), pg2 = document.getElementById("pg2");
-pg2.innerHTML = pg.innerHTML;
-let leaving = 0;
-entryLink.addEventListener("click", e => {
-  e.preventDefault();
-  if (leaving) return;
-  vEntry.classList.add("leaving");
-  leaving = setTimeout(() => { leaving = 0; document.body.classList.add("fromentry"); location.hash = "#system"; setTimeout(() => document.body.classList.remove("fromentry"), 1000); }, 850);
-});
-let busy = false;
-if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(() => {
-  if (route !== "entry" || document.hidden || busy) return;
-  const a = pg.children, b = pg2.children, vh = innerHeight, vw = innerWidth, cand = [];
-  for (let i = 0; i < a.length; i++) {
-    if (a[i].classList.contains("k")) continue;
-    for (const el of [a[i], b[i]]) {
-      const r = el.getBoundingClientRect();
-      if (r.top > 40 && r.bottom < vh && r.left > 0 && r.right < vw) { cand.push(el); break; }
-    }
-  }
-  if (!cand.length) return;
-  const el = cand[Math.floor(Math.random() * cand.length)], i = [...el.parentNode.children].indexOf(el);
-  busy = true;   // one mark at a time
-  [a[i], b[i]].forEach(x => x.classList.add("k"));
-  setTimeout(() => [a[i], b[i]].forEach(x => x.classList.remove("k")), 4200);
-  setTimeout(() => { busy = false; }, 7600);
-}, 1400);
+// ---- entry: the wheel spins in the middle like a loader, then slides to its place and the text fades in
+let introT = 0, introRAF = 0;
+function cancelIntro() { clearTimeout(introT); cancelAnimationFrame(introRAF); introT = introRAF = 0; }
+function startIntro() {
+  cancelIntro();
+  const body = document.body;
+  if (reduce) { body.classList.remove("onentry"); history.replaceState(null, "", "#system"); applyRoute(false); return; }
+  const end = targetAngle(), SPIN = 3200, t0 = performance.now();
+  const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  (function frame(now) {
+    const x = Math.min(1, (now - t0) / SPIN);
+    cur = goal = end - 900 * (1 - ease(x));        // starts as a full spin, settles on the first mark
+    render(cur);
+    if (x < 1) { introRAF = requestAnimationFrame(frame); return; }
+    introT = setTimeout(() => {
+      body.classList.remove("onentry");                 // wheel glides left (css transition)
+      introT = setTimeout(() => {
+        body.classList.add("fromentry");
+        history.replaceState(null, "", "#system");
+        applyRoute(false);
+        setTimeout(() => body.classList.remove("fromentry"), 1500);
+      }, 1250);
+    }, 350);
+  })(t0);
+}
+
 applyRoute(false);
 goal = cur = targetAngle();
 render(cur);
