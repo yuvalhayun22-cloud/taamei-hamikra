@@ -32,8 +32,8 @@ body{margin:0;background:transparent;transition:color .25s;color:var(--fg);font-
 #v-entry svg{display:block;width:100%;height:100%}
 #v-entry{transition:opacity .9s ease}
 #v-entry.leaving{opacity:0;pointer-events:none}
-#v-entry path{fill:#e4decc;transition:fill 1.8s ease-out}
-#v-entry path.k{fill:#000;transition:fill .9s ease-in}
+#v-entry path{fill:#e4decc;transition:fill 3.2s ease-in-out}
+#v-entry path.k{fill:#000;transition:fill 2.6s ease-in-out}
 @keyframes fi{from{opacity:0}to{opacity:1}}
 body.fromentry .wheel,body.fromentry #v-system{animation:fi .9s ease}
 #v-entry .mv{animation:mv 45s linear infinite}
@@ -497,8 +497,9 @@ entryLink.addEventListener("click", e => {
   vEntry.classList.add("leaving");
   leaving = setTimeout(() => { leaving = 0; document.body.classList.add("fromentry"); location.hash = "#system"; setTimeout(() => document.body.classList.remove("fromentry"), 1000); }, 850);
 });
+let busy = false;
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(() => {
-  if (route !== "entry" || document.hidden) return;
+  if (route !== "entry" || document.hidden || busy) return;
   const a = pg.children, b = pg2.children, vh = innerHeight, vw = innerWidth, cand = [];
   for (let i = 0; i < a.length; i++) {
     if (a[i].classList.contains("k")) continue;
@@ -509,8 +510,10 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(() => {
   }
   if (!cand.length) return;
   const el = cand[Math.floor(Math.random() * cand.length)], i = [...el.parentNode.children].indexOf(el);
+  busy = true;   // one mark at a time
   [a[i], b[i]].forEach(x => x.classList.add("k"));
-  setTimeout(() => [a[i], b[i]].forEach(x => x.classList.remove("k")), 1800 + Math.random() * 1500);
+  setTimeout(() => [a[i], b[i]].forEach(x => x.classList.remove("k")), 4200);
+  setTimeout(() => { busy = false; }, 7600);
 }, 1400);
 applyRoute(false);
 goal = cur = targetAngle();
