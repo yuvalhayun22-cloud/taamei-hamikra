@@ -488,10 +488,10 @@ function startIntro() {
   cancelIntro();
   const body = document.body;
   if (reduce) { body.classList.remove("onentry"); history.replaceState(null, "", "#system"); applyRoute(false); return; }
-  const end = targetAngle(), SPIN = 3200, t0 = performance.now();
+  const end = targetAngle(), SPIN = 3200, HOLD = 2200, t0 = performance.now() + HOLD;   // stands still in the middle first, then spins
   const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
   (function frame(now) {
-    const x = Math.min(1, (now - t0) / SPIN);
+    const x = Math.min(1, Math.max(0, (now - t0) / SPIN));
     cur = goal = end - 900 * (1 - ease(x));        // starts as a full spin, settles on the first mark
     render(cur);
     if (x < 1) { introRAF = requestAnimationFrame(frame); return; }
@@ -504,7 +504,7 @@ function startIntro() {
         setTimeout(() => body.classList.remove("fromentry"), 1500);
       }, 1250);
     }, 350);
-  })(t0);
+  })(performance.now());
 }
 
 applyRoute(false);
