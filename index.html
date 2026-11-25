@@ -135,7 +135,9 @@ body.has-img .strip{background:transparent}
   body.onverse .strip{display:none}
   #v-verse{min-height:100vh}
   .vs{position:static;width:auto !important;margin:110px 20px 40px;font-size:52px;line-height:64px;letter-spacing:-0.5px}
-  .vt{right:20px;top:30px}
+  .vt{right:20px;top:15px;font-size:calc(var(--fs)*1px);line-height:25.5px}   /* taam name = body text size */
+  .play{--u:var(--nu)}   /* play/stop scale with the menu circle */
+  .play::after{content:"";position:absolute;inset:-12px}
   .nav .toggle{background:var(--bg)}
   .nav.open .toggle{background:var(--fg)}
 }
