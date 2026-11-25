@@ -99,11 +99,12 @@ body.has-img .strip{background:transparent}
 .nav{--u:var(--nu,calc(100vw/1494));position:fixed;left:0;top:0;z-index:10;width:calc(var(--u)*80);height:calc(var(--u)*70)}
 .nav .toggle{position:absolute;left:calc(var(--u)*30);top:calc(var(--u)*27);width:calc(var(--u)*26);height:calc(var(--u)*26);
   padding:0;border:1px solid var(--fg);border-radius:50%;background:transparent;cursor:pointer}
+.nav .toggle::after{content:"";position:absolute;inset:-14px;border-radius:50%}   /* keeps a finger-sized tap area when the circle is small */
 .nav:hover .toggle,.nav.open .toggle,.nav:has(:focus-visible) .toggle{background:var(--fg)}
 .nav .menu{position:absolute;left:0;top:0;visibility:hidden;opacity:0;transition:opacity .15s}
 .nav:hover .menu,.nav.open .menu,.nav:has(:focus-visible) .menu{visibility:visible;opacity:1}
 .nav:hover,.nav.open,.nav:has(:focus-visible){height:calc(var(--u)*150);width:calc(var(--u)*260)}
-.nav a{position:absolute;left:0;width:calc(var(--u)*230);height:calc(var(--u)*45);display:block;font-size:calc(var(--u)*var(--fs)*.75);color:var(--fg);text-decoration:none;
+.nav a{position:absolute;left:0;width:calc(var(--u)*230);height:calc(var(--u)*45);display:block;font-size:calc(var(--u)*24);color:var(--fg);text-decoration:none;
   font-family:"TB Thin","Heebo",Arial,sans-serif;line-height:calc(var(--u)*45);white-space:nowrap}
 .nav a span{position:absolute;left:calc(var(--u)*69);top:0}
 .nav a i{position:absolute;left:calc(var(--u)*30);top:calc(var(--u)*10);width:calc(var(--u)*26);height:calc(var(--u)*26);
@@ -115,11 +116,11 @@ body.has-img .strip{background:transparent}
 /* ---------- phones ---------- */
 @media (max-width:900px){
   :root{--fs:17}
-  .strip{display:block;position:fixed;left:0;top:0;width:100%;height:311px;background:linear-gradient(to bottom,var(--bg) 0,var(--bg) 50%,rgba(255,248,228,0) 100%);z-index:0}
-  .wheel{top:0;left:50%;margin-left:-200px;width:400px;height:311px;overflow:hidden}
-  .wheel svg{height:400px;margin-top:-32px}   /* ring starts on the menu line (27px), not at the page edge */
+  .strip{display:block;position:fixed;left:0;top:0;width:100%;height:298px;background:linear-gradient(to bottom,var(--bg) 0,var(--bg) 50%,rgba(255,248,228,0) 100%);z-index:0}
+  .wheel{top:0;left:50%;margin-left:-200px;width:400px;height:298px;overflow:hidden}
+  .wheel svg{height:400px;margin-top:-45px}   /* ring starts on the menu line (circle top ≈14px), not at the page edge */
   .wheel a{width:280px;height:280px}
-  #v-system,#v-taamim{width:auto;margin:0 20px;padding-top:331px}
+  #v-system,#v-taamim{width:auto;margin:0 20px;padding-top:318px}
   #v-system{padding-bottom:20px}
   #v-system{line-height:1.75}
   #v-system p{text-indent:20px}
@@ -344,7 +345,7 @@ function setUnit() {
   // verse pages must fit the window without scrolling: scale by whichever of width/height is tighter
   const fit = document.body.classList.contains("onverse") && w > 900 ? Math.min(w / 1494, hh / 840) : w / 1494;
   document.documentElement.style.setProperty("--u", (w <= 900 ? 1 : fit) + "px");
-  document.documentElement.style.setProperty("--nu", (w <= 900 ? 1 : w / 1494) + "px");   // the menu never changes size between pages
+  document.documentElement.style.setProperty("--nu", (w <= 900 ? 17 / 32 : w / 1494) + "px");   // phones: the menu shrinks with the text (17px vs 32px body) — the menu never changes size between pages
 }
 
 // ---- audio: each verse page plays its own clip (cut from the two recordings at the times written in the design)
